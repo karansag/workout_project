@@ -5,8 +5,12 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'workout_project.views.home', name='home'),
+	
+	url(r'u/(?P<uid>\d+)/$', {{project_name}}.views.userhome),
+
+    url(r'^$', 'workout_project.views.home', name='home'),
+	
+	# Examples:
     # url(r'^workout_project/', include('workout_project.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
