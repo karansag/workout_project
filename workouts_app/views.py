@@ -11,5 +11,5 @@ def userhome(request, uid):
 def home(request):
 	return render_to_response('workouts/index_temp.html')	
 
-
-
+def wkdetail(request, uid, wkoutname):
+	pass

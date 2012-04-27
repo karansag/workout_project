@@ -7,8 +7,9 @@ class User(models.Model):
 class Workout(models.Model):
 	user = models.ForeignKey(User)
 	name = models.CharField(max_length=100)
+	desc = models.CharField(max_length=300)
 	def __unicode__(self):
-		return (self.name, self.user)
+		return self.name+", "+self.user
 
 class Exercise(models.Model):
 	workout = models.ForeignKey(Workout)
@@ -16,4 +17,4 @@ class Exercise(models.Model):
 	durorreps = models.CharField(max_length=30)
 	
 	def __unicode__(self):
-		return (self.name, self.durorreps)
+		return self.name+", "+ self.durorreps
