@@ -6,9 +6,9 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
 	
-	url(r'u/(?P<uid>\d+)/$', {{project_name}}.views.userhome),
+	url(r'u/(?P<uid>\d+)/$', 'workouts_app.views.userhome'),
 
-    url(r'^$', 'workout_project.views.home', name='home'),
+    url(r'^$', 'workouts_app.views.home', name='home'),
 	
 	# Examples:
     # url(r'^workout_project/', include('workout_project.foo.urls')),
