@@ -14,6 +14,13 @@
 <body>
 Welcome to your WorkMe home page, {{user.name}}
 
+<p> Here are your workouts</p>
+<ul>
+{% for workout in user.workout_set.all %}
+    <li>{{ workout.name }}</li>
+{% endfor %}
+</ul>
+
 </body>
 
 
