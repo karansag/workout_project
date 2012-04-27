@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'workouts_app.views.home', name='home'),
 		
-    url(r'u/(?P<uid>\d+)/(?P<wkoutname>)/$', 'workouts_app.views.wkdetail'),
+    url(r'u/(?P<uid>\d+)/(?P<wkoutname>\w+)/$', 'workouts_app.views.wkdetail'),
 		
 	# Examples:
     # url(r'^workout_project/', include('workout_project.foo.urls')),

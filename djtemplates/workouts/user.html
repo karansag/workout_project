@@ -1,5 +1,8 @@
-<html>
-<head>
+oice in poll.choice_set.all %}
+    <li>{{ choice.choice }}</li>
+{% endfor %}
+</ul> <html>
+		<head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
@@ -17,7 +20,7 @@ Welcome to your WorkMe home page, {{user.name}}
 <p> Here are your workouts</p>
 <ul>
 {% for workout in user.workout_set.all %}
-    <li>{{ workout.name }}</li>
+    <li><a> workout.name }}</a></li>
 {% endfor %}
 </ul>
 

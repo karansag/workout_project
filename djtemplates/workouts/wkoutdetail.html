@@ -1,0 +1,11 @@
+<p>Here is your workout!</p>
+
+<b>{{workout.name}}</b>
+
+<ul>
+{% for exercise in workout.exercise_set.all %}
+    <li>{{ exercise.name }} for {{exercise.durorreps}}</li>
+{% endfor %}
+</ul>
+
+
