@@ -8,8 +8,7 @@ $(function(){
 	
 	var pathname = window.location.pathname;
 	$('a.workout').each(function(index){
-		name = this.innerHTML;
-		this.href = pathname+name+'/';
+		this.href = pathname+(index+1)+'/';
 	});
 		
 	$('#randomWkout').attr('action', pathname+'random/');

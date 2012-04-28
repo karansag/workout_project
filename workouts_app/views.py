@@ -11,10 +11,9 @@ def userhome(request, uid):
 def home(request):
 	return render_to_response('workouts/index_temp.html')	
 
-def wkdetail(request, uid, wkoutname):
+def wkdetail(request, uid, wkout_num):
 	u = get_object_or_404(User, pk=uid)
-	wkoutname = str(wkoutname)
-	w = u.workout_set.get(name=wkoutname)
+	w = u.workout_set.get(id=wkout_num)
 	return render_to_response('workouts/wkoutdetail.html', {'workout':w })
 
 def random_workout(request, uid):
@@ -24,7 +23,5 @@ def random_workout(request, uid):
 	
 	rand = random.randint(1, workoutnum)
 
-	workout = u.workout_set.get(id=rand)
-	workoutname = str(workout.name)
-	return wkdetail(request,uid, workoutname)
+	return wkdetail(request,uid, rand)
 	
