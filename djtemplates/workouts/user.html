@@ -1,13 +1,22 @@
-oice in poll.choice_set.all %}
-    <li>{{ choice.choice }}</li>
-{% endfor %}
-</ul> <html>
-		<head>
+ <html>
+	<head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <script type='text/javascript'>
+$(function(){
+	
+	var pathname = window.location.pathname;
+	$('a.workout').each(function(index){
+		name = this.innerHTML;
+		this.href = pathname+name+'/';
+	});
+		
+	$('#randomWkout').attr('action', pathname+'random/');
+	
 
+
+});
 
 
 </script>
@@ -20,10 +29,14 @@ Welcome to your WorkMe home page, {{user.name}}
 <p> Here are your workouts</p>
 <ul>
 {% for workout in user.workout_set.all %}
-    <li><a> workout.name }}</a></li>
+    <li><a class="workout">{{ workout.name }}</a></li>
 {% endfor %}
 </ul>
 
+<button type="submit" id="newWorkout"> add workout </button>
+<FORM id='randomWkout' METHOD="LINK" ACTION= >
+<INPUT TYPE="submit" VALUE="pick a random workout!">
+</FORM>
 </body>
 
 

@@ -9,7 +9,7 @@ class Workout(models.Model):
 	name = models.CharField(max_length=100)
 	desc = models.CharField(max_length=300)
 	def __unicode__(self):
-		return self.name+", "+self.user
+		return self.name+", "+self.user.name
 
 class Exercise(models.Model):
 	workout = models.ForeignKey(Workout)
