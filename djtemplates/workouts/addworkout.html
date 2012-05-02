@@ -1,0 +1,20 @@
+<html>
+	<head>
+	</head>
+
+
+	<body>
+	<p>"{{request.path}}" </p>
+		<form action="/u/1/addworkout" method="POST">{% csrf_token %} 
+		{{ form.as_p }} 
+
+		<input type="submit" value= "Submit" />
+		</form>
+	</body>
+
+
+
+
+</html>
+
+
