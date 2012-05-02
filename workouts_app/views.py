@@ -1,8 +1,11 @@
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from workouts_app.models import *
+from workouts_app.forms import WorkoutForm
+from django.template import RequestContext
 import random
+
 
 def userhome(request, uid):
 	u = get_object_or_404(User, pk=uid)
@@ -24,4 +27,16 @@ def random_workout(request, uid):
 	rand = random.randint(1, workoutnum)
 
 	return wkdetail(request,uid, rand)
-	
+
+def addworkout(request, uid):
+	if request.method == 'POST':
+		form = WorkoutForm(request.POST)
+		if form.is_valid():
+			form.save()	
+			return HttpResponseRedirect('/u/'+str(uid))
+	else:
+		form = WorkoutForm()
+		user = get_object_or_404(User, pk=uid)
+		form.user = user
+
+	return render_to_response('workouts/addworkout.html', {'form':form}, RequestContext(request))

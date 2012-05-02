@@ -12,7 +12,8 @@ urlpatterns = patterns('',
 	url(r'u/(?P<uid>\d+)/random/$', 'workouts_app.views.random_workout'),
 		
     url(r'u/(?P<uid>\d+)/(?P<wkout_num>\d+)/$', 'workouts_app.views.wkdetail'),
-		
+	
+	url(r'u/(?P<uid>\d+)/addworkout$', 'workouts_app.views.addworkout'),	
 	# Examples:
     # url(r'^workout_project/', include('workout_project.foo.urls')),
 
