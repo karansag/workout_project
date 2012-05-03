@@ -1,7 +1,7 @@
 from django.db import models
-
-class User(models.Model):
-	name = models.CharField(max_length=100)
+from django.contrib.auth import models as authmods
+class User(authmods.User):
+	is_staff = False
 	def __unicode__(self):
 		return self.name
 class Workout(models.Model):
