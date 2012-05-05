@@ -2,7 +2,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from workouts_app.models import *
-from workouts_app.forms import WorkoutForm, ExerciseForm
 from django.template import RequestContext
 import random
 
@@ -31,10 +30,24 @@ def random_workout(request, uid):
 def addworkout(request, uid):
 
     thisuser = get_object_or_404(User, pk=uid)
+    addworkouturl = '/u/'+uid+'/addworkout/'
     if request.method == 'POST':
-		form = WorkoutForm(request.POST)
-		if form.is_valid():
-			form.save()	
-			return HttpResponseRedirect('/u/'+str(uid))
+        #assumes input has been cleaned...TODO: validate form
+        name = request.POST['wkout_name']
+        desc = request.POST['wkout_desc']
 
-    return render_to_response('addworkout.html', {'user':thisuser}, RequestContext(request))
+        w = Workout(user=thisuser, name=name, desc=desc)
+        w.save()
+
+        exnames = request.POST.getlist('ex_name', [])
+        exreps = request.POST.getlist('ex_reps', [])
+        num_ex = len(exnames)
+
+        for i in range(num_ex):
+            e = Exercise(name=exnames[i], durorreps=exreps[i], workout=w)
+            e.save()
+
+        return HttpResponseRedirect('/u/'+str(uid))
+    
+    return render_to_response('addworkout.html', {'user':thisuser, 'posturl':addworkouturl}
+            , RequestContext(request))

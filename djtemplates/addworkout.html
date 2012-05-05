@@ -4,8 +4,13 @@
 
     <script type='text/javascript'>
         $(function(){
+            var exInputHtml ='<tr class="exercises">\
+            <td><input class type="text" name ="ex_name" maxlength="100"/></td>\
+            <td><input   type="text" name="ex_reps" maxlength="100" /></td>\
+            </tr>' 
+            
 	        $('#add_ex').click(function(){
-                $('table#ex_table tr:last').after('<tr class="exercises"><td><input class type="text"    maxlength="100"/></td><td><input type="text" name="subject" maxlength="100" /></td></tr>'); 
+                $('table#ex_table tr:last').after(exInputHtml); 
 
 
 
@@ -27,7 +32,7 @@
 
 	<body>
         <h2> <b> Add a new workout, {{user.name}}! </b> </h2>
-		<form action="/u/1/addworkout" method="POST">{% csrf_token %} 
+        <form action="{{posturl}}" method="POST">{% csrf_token %} 
         Workout name: <input type="text" name="wkout_name"/> <br/>
         Workout description: <input type=text name="wkout_desc" /> <br/>
         <p> Exercises
@@ -35,9 +40,18 @@
             <button id="rm_ex" type="button"> Remove Exercise </button>        
         </p>
         <table id='ex_table'>
-        <tr><th>Exercise Name</th><th> Reps/Duration</th></tr>
-        <tr class='exercises'><td><input class type="text" maxlength="100"/></td><td><input   type="text" name="subject" maxlength="100" /></td></tr>
-        <tr class='exercises'><td><input class type="text" maxlength="100"/></td><td><input   type="text" name="subject" maxlength="100" /></td></tr>
+            <tr>
+                <th>Exercise Name</th>
+                <th> Reps/Duration</th>
+            </tr>
+            <tr class='exercises'>
+                <td><input class type="text" name ="ex_name" maxlength="100"/></td>
+                <td><input   type="text" name="ex_reps" maxlength="100" /></td>
+            </tr>
+            <tr class='exercises'>
+                <td><input class type="text" name ="ex_name" maxlength="100"/></td>
+                <td><input   type="text" name="ex_reps" maxlength="100" /></td>
+            </tr> 
 
         
         </table>
