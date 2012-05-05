@@ -1,15 +1,49 @@
 <html>
-	<head>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type='text/javascript'>
+        $(function(){
+	        $('#add_ex').click(function(){
+                $('table#ex_table tr:last').after('<tr class="exercises"><td><input class type="text"    maxlength="100"/></td><td><input type="text" name="subject" maxlength="100" /></td></tr>'); 
+
+
+
+                });
+            $('#rm_ex').click(function(){
+                $('table#ex_table .exercises:last').remove(); 
+
+                });
+              
+            
+        });
+
+
+</script>
+
+
 	</head>
 
 
 	<body>
-	<p>"{{request.path}}" </p>
+        <h2> <b> Add a new workout, {{user.name}}! </b> </h2>
 		<form action="/u/1/addworkout" method="POST">{% csrf_token %} 
-		{{ form.as_p }} 
+        Workout name: <input type="text" name="wkout_name"/> <br/>
+        Workout description: <input type=text name="wkout_desc" /> <br/>
+        <p> Exercises
+            <button id="add_ex" type="button"> Add Exercise </button> 
+            <button id="rm_ex" type="button"> Remove Exercise </button>        
+        </p>
+        <table id='ex_table'>
+        <tr><th>Exercise Name</th><th> Reps/Duration</th></tr>
+        <tr class='exercises'><td><input class type="text" maxlength="100"/></td><td><input   type="text" name="subject" maxlength="100" /></td></tr>
+        <tr class='exercises'><td><input class type="text" maxlength="100"/></td><td><input   type="text" name="subject" maxlength="100" /></td></tr>
 
-		<input type="submit" value= "Submit" />
-		</form>
+        
+        </table>
+        
+        <p>  <input type="submit" value= "Submit" /></p>
+    </form>
 	</body>
 
 

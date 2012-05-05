@@ -2,7 +2,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from workouts_app.models import *
-from workouts_app.forms import WorkoutForm
+from workouts_app.forms import WorkoutForm, ExerciseForm
 from django.template import RequestContext
 import random
 
@@ -29,14 +29,12 @@ def random_workout(request, uid):
 	return wkdetail(request,uid, rand)
 
 def addworkout(request, uid):
-	if request.method == 'POST':
+
+    thisuser = get_object_or_404(User, pk=uid)
+    if request.method == 'POST':
 		form = WorkoutForm(request.POST)
 		if form.is_valid():
 			form.save()	
 			return HttpResponseRedirect('/u/'+str(uid))
-	else:
-		form = WorkoutForm()
-		user = get_object_or_404(User, pk=uid)
-		form.user = user
 
-	return render_to_response('addworkout.html', {'form':form}, RequestContext(request))
+    return render_to_response('addworkout.html', {'user':thisuser}, RequestContext(request))
