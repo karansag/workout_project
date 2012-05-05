@@ -13,6 +13,7 @@ $(function(){
 		
 	$('#randomWkout').attr('action', pathname+'random/');
 	
+	$('#addWkout').attr('action', pathname+'addworkout/');
 
 
 });
@@ -32,7 +33,10 @@ Welcome to your WorkMe home page, {{user.name}}
 {% endfor %}
 </ul>
 
-<button type="submit" id="newWorkout"> add workout </button>
+<FORM id='addWkout' METHOD="LINK" ACTION= >
+<INPUT TYPE="submit" VALUE="add workout!">
+</FORM>
+
 <FORM id='randomWkout' METHOD="LINK" ACTION= >
 <INPUT TYPE="submit" VALUE="pick a random workout!">
 </FORM>

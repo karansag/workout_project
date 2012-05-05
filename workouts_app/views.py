@@ -9,15 +9,15 @@ import random
 
 def userhome(request, uid):
 	u = get_object_or_404(User, pk=uid)
-	return render_to_response('workouts/user.html', {'user':u})
+	return render_to_response('user.html', {'user':u})
 
 def home(request):
-	return render_to_response('workouts/index_temp.html')	
+	return render_to_response('index_temp.html')	
 
 def wkdetail(request, uid, wkout_num):
 	u = get_object_or_404(User, pk=uid)
 	w = u.workout_set.get(id=wkout_num)
-	return render_to_response('workouts/wkoutdetail.html', {'workout':w })
+	return render_to_response('wkoutdetail.html', {'workout':w })
 
 def random_workout(request, uid):
 	#get user's workouts and pick a random one
@@ -39,4 +39,4 @@ def addworkout(request, uid):
 		user = get_object_or_404(User, pk=uid)
 		form.user = user
 
-	return render_to_response('workouts/addworkout.html', {'form':form}, RequestContext(request))
+	return render_to_response('addworkout.html', {'form':form}, RequestContext(request))
