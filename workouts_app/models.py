@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth import models as authmods
+
 class User(authmods.User):
 	is_staff = False
 	def __unicode__(self):
-		return self.name
+		return self.get_full_name()
+
 class Workout(models.Model):
 	user = models.ForeignKey(User)
 	name = models.CharField(max_length=100)
