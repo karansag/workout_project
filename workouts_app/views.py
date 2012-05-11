@@ -21,11 +21,11 @@ def wkdetail(request, uid, wkout_num):
 def random_workout(request, uid):
 	#get user's workouts and pick a random one
 	u = get_object_or_404(User, pk=uid)
-	workoutnum = u.workout_set.count()
+	workouts = u.workout_set.all()
 	
-	rand = random.randint(1, workoutnum)
-
-	return wkdetail(request,uid, rand)
+	rand = random.choice(workouts)
+     
+	return wkdetail(request,uid, rand.id)
 
 def addworkout(request, uid):
 
@@ -51,3 +51,11 @@ def addworkout(request, uid):
     
     return render_to_response('addworkout.html', {'user':thisuser, 'posturl':addworkouturl}
             , RequestContext(request))
+
+def delworkout(request, uid, workoutid):
+    u = User(pk=uid)
+    workout = get_object_or_404(Workout, user=u, id=workoutid)
+    workout.delete()
+
+    return redirect('userhome',uid=uid)
+

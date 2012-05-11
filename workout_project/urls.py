@@ -6,12 +6,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	
-	url(r'u/(?P<uid>\d+)/$', 'workouts_app.views.userhome'),
+	url(r'u/(?P<uid>\d+)/$', 'workouts_app.views.userhome', name='userhome'),
 
     url(r'^$', 'workouts_app.views.home', name='home'),
 	url(r'u/(?P<uid>\d+)/random/$', 'workouts_app.views.random_workout'),
-		
-    url(r'u/(?P<uid>\d+)/(?P<wkout_num>\d+)/$', 'workouts_app.views.wkdetail'),
+    url(r'u/(\d+)/del/(\d+)', 'workouts_app.views.delworkout'),		
+    url(r'u/(?P<uid>\d+)/(?P<wkout_num>\d+)/$', 'workouts_app.views.wkdetail', name='detail'),
 	
 	url(r'u/(?P<uid>\d+)/addworkout/$', 'workouts_app.views.addworkout'),	
 	# Examples:

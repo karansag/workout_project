@@ -7,9 +7,7 @@
 $(function(){
 	
 	var pathname = window.location.pathname;
-	$('a.workout').each(function(index){
-		this.href = pathname+(index+1)+'/';
-	});
+	
 		
 	$('#randomWkout').attr('action', pathname+'random/');
 	
@@ -28,9 +26,21 @@ Welcome to your WorkMe home page, {{user.name}}
 
 <p> Here are your workouts</p>
 <ul>
-{% for workout in user.workout_set.all %}
-    <li><a class="workout">{{ workout.name }}</a></li>
+    {% for workout in user.workout_set.all %}
+    <table>
+        
+        <tr id="{{workout.id}}">
+            {% url detail user.pk workout.id as detail %}
+
+            <td><li><a href="{{detail}}" class="workout">{{ workout.name }}</a></li> </td>
+            <td><a href="{% url workouts_app.views.delworkout user.pk workout.id %}"
+                    class="del-wkout" id="del-{{workout.id}}"> <img 
+                    src=
+                    "http://www.cardealers.pk/App_Themes/Default/Images/Icons/delete_icon.png"> </a> 
+            </td>
+        </tr>
 {% endfor %}
+    </table>
 </ul>
 
 <FORM id='addWkout' METHOD="LINK" ACTION= >
