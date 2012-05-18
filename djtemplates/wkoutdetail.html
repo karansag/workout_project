@@ -3,9 +3,13 @@
 <b>{{workout.name}}</b>
 
 <ul>
-{% for exercise in workout.exercise_set.all %}
-    <li>{{ exercise.name }} for {{exercise.durorreps}}</li>
-{% endfor %}
+    {% for exercise in workout.exercise_set.all %}
+        <li>
+            <b> {{ exercise.name }}</b> : {{exercise.durorreps}}
+        </li>
+    {% endfor %}
+    
 </ul>
+<p> Notes: </p>
 
 

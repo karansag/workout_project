@@ -44,8 +44,10 @@ def addworkout(request, uid):
         num_ex = len(exnames)
 
         for i in range(num_ex):
-            e = Exercise(name=exnames[i], durorreps=exreps[i], workout=w)
-            e.save()
+            #make sure the name field isn't blank
+            if exnames[i] != '':
+                e = Exercise(name=exnames[i], durorreps=exreps[i], workout=w)
+                e.save()
 
         return HttpResponseRedirect('/u/'+str(uid))
     
