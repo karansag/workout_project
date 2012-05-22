@@ -4,7 +4,19 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from workouts_app.models import *
 from django.template import RequestContext
 import random
+from django.views.decorators.csrf import csrf_exempt                                          
 
+@csrf_exempt                             
+def newuser(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            u = form.save()
+        uid = u.pk
+        return HttpResponseRedirect('/u/'+str(uid)+'/') 
+    else:
+        form = UserForm()
+        return render_to_response('newuser.html', {'form':form}, RequestContext(request)) 
 
 def userhome(request, uid):
 	u = get_object_or_404(User, pk=uid)

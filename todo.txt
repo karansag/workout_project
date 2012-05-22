@@ -1,1 +1,3 @@
 - change delete to an ajax call
+- add flexible lists on form
+- add javascript form checking

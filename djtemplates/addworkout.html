@@ -34,7 +34,7 @@
         <h2> <b> Add a new workout, {{user.name}}! </b> </h2>
         <form action="{{posturl}}" method="POST">{% csrf_token %} 
         Workout name: <input type="text" name="wkout_name"/> <br/>
-        Workout description: <input type=text name="wkout_desc" /> <br/>
+        Description: <input type=text name="wkout_desc" /> <br/>
         <p> Exercises
             <button id="add_ex" type="button"> Add Exercise </button> 
             <button id="rm_ex" type="button"> Remove Exercise </button>        
@@ -42,7 +42,7 @@
         <table id='ex_table'>
             <tr>
                 <th>Exercise Name</th>
-                <th> Reps/Duration</th>
+                <th> Reps/Time/Whatever</th>
             </tr>
             <tr class='exercises'>
                 <td><input class type="text" name ="ex_name" maxlength="100"/></td>
